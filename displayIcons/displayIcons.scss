@@ -1,0 +1,71 @@
+button{
+    padding: 0px !important;
+}
+@mixin pallets{
+    width: 30px;
+    height: 30px;
+    border-radius: 34px;
+    border-color: black;
+    border-style: groove;
+    border-width: 1px;
+    margin-left: 2px;
+}
+.color-pallets{
+    height: 102px;
+    width: 125px;
+    display: flex;
+    flex-direction: column;
+    .color-row{
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        .white-pallet{
+            @include pallets;
+            background: white;
+        }
+        .salmon-pallet{
+            @include pallets;
+            background: salmon;
+        }
+        .orange-pallet{
+            @include pallets;
+            background: orange;
+        }
+        .yellow-pallet{
+            @include pallets;
+            background: yellow;
+        }
+        .green-pallet{
+            @include pallets;
+            background: green;
+        }
+        .teal-pallet{
+            @include pallets;
+            background: teal;
+        }
+        .blue-pallet{
+            @include pallets;
+            background: blue;
+        }
+        .aqua-pallet{
+            @include pallets;
+            background: aqua;
+        }
+        .purple-pallet{
+            @include pallets;
+            background: purple;
+        }
+        .pink-pallet{
+            @include pallets;
+            background: pink;
+        }
+        .red-pallet{
+            @include pallets;
+            background: red;
+        }
+        .gray-pallet{
+            @include pallets;
+            background: gray;
+        }
+    }
+}
