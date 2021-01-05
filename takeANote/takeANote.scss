@@ -1,0 +1,77 @@
+$shadow: 0 0px 9px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+//mixin
+@mixin takeNote{
+  justify-content: center !important;
+}
+
+
+.makeStyles-root-38 {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.makeStyles-root-12{
+  @include takeNote;
+}
+.input-title {
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 553px;
+  padding: 12px 16px;
+  border-radius: 11px;
+  box-shadow: $shadow
+}
+// .outer-container {
+//   // margin-top: 26px;
+//   // margin-left: 21%;
+// }
+.brush-option {
+  margin-right: 11px;
+  margin-left: 13px;
+}
+.options {
+  display: flex;
+  flex-direction: row;
+  opacity: 80%;
+}
+.outer-container2{
+  background: white;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 512px;
+    padding: 12px 16px;
+    border-radius: 11px;
+    box-shadow: 0 0px 9px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.input-title2{
+  display: flex;
+  flex-direction: column;
+}
+.text-fields{
+  display: flex;
+  flex-direction: column;
+}
+.icons{
+  display: flex;
+  flex-direction: row;
+  margin-top: 11px
+}
+.options2{
+  margin-top: 7px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.title{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.icon-option{
+  margin: 0px 8px;
+}
