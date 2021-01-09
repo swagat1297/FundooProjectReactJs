@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from 'react';
 import clsx from "clsx";
 import { StylesProvider } from "@material-ui/core/styles";
 import { makeStyles, useTheme, fade } from "@material-ui/core/styles";
@@ -14,7 +14,7 @@ import Menu from "@material-ui/core/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import Button from "@material-ui/core/Button";
 import Avatar from '@material-ui/core/Avatar';
-import TitleCard from "../takeANote/takeANote";
+import ArchiveNotes from '../Archive/Archive';
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -30,8 +30,14 @@ import ViewStreamIcon from "@material-ui/icons/ViewStream";
 import NotificationsNoneRoundedIcon from "@material-ui/icons/NotificationsNoneRounded";
 import EmojiObjectsTwoToneIcon from "@material-ui/icons/EmojiObjectsTwoTone";
 import displayPicture from '../../asset/image/logo.png';
-import DisplayNotes from '../display-notes/displayNotes'
-
+import TrashNote from '../TrashNote/TrashNote'
+import Note from '../NoteComponent/NoteComponent'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+import {Link} from 'react-router-dom';
 import "../fundoo keep/keep.scss";
 const drawerWidth = 240;
 
@@ -106,15 +112,44 @@ export default function Dashboard(props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [toggleValueNote, setToggleValueNote] = React.useState(false);
+  const [toggleValueArched, setToggleValueArched] = React.useState(false);
+  const [toggleValueTrash, setToggleValueTrash] = React.useState(false);
+  const [toggleListView, setToggleListView] = React.useState(false);
+
+  // useEffect(() => {
+  //   console.log("notes in useEffect", notes);
+  //   getAllNotes();
+  //  }, [notes]);
+   
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
+ 
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  const handleColorChange = (value) =>{
+    if(value === 'note'){
+      props.history.push('/dashboard/notes');
+      setToggleValueNote(true)
+      setToggleValueArched(false) 
+      setToggleValueTrash(false)
+    }
+    if(value === 'arched'){
+      props.history.push('/dashboard/archive');
+      setToggleValueArched(true)
+      setToggleValueNote(false)  
+      setToggleValueTrash(false)
+    }  
+    if(value === 'trash'){
+      props.history.push('/dashboard/trash');
+      setToggleValueArched(false)
+      setToggleValueNote(false)  
+      setToggleValueTrash(true)
+    }  
+  }
   const handleDrawerOpen = () => {
     setOpen(!open);
   };
@@ -125,7 +160,6 @@ export default function Dashboard(props) {
     localStorage.removeItem("token");
     props.history.push('/');
   }
-
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -159,7 +193,7 @@ export default function Dashboard(props) {
               inputProps={{ "aria-label": "search" }}
             />
           </div>
-          <div className="list-view">
+          <div className="list-view" onClick={()=>setToggleListView(!toggleListView)}>
             <ViewStreamIcon />
           </div>
           <div className="profile">
@@ -169,8 +203,6 @@ export default function Dashboard(props) {
               onClick={handleClick}
             >
                <Avatar alt="Remy Sharp" src={displayPicture} />
-              {/* <img className="profilepic" src={displayPicture} /> */}
-              {/* <AccountCircleOutlinedIcon /> */}
             </Button>
             <StylesProvider injectFirst> 
               <Menu
@@ -216,7 +248,7 @@ export default function Dashboard(props) {
         </div>
         <Divider />
         <List>
-          <ListItem button className="round-corner" key="Notes">
+          <ListItem button className={toggleValueNote ? "round-cornerClick" : "round-corner"} key="Notes" onClick={() => handleColorChange('note')}>
             <ListItemIcon>
               {" "}
               <EmojiObjectsTwoToneIcon />
@@ -237,14 +269,14 @@ export default function Dashboard(props) {
             </ListItemIcon>
             <ListItemText primary="Edit labels" />
           </ListItem>
-          <ListItem button className="round-cornerthree" key="Archive">
+          <ListItem button  className={toggleValueArched ? "round-cornerthreeClick" : "round-cornerthree"}  onClick={() => handleColorChange('arched')} key="Archive">
             <ListItemIcon>
               {" "}
               <InboxIcon />
             </ListItemIcon>
             <ListItemText primary="Archive" />
           </ListItem>
-          <ListItem button className="round-cornerfour" key="Trash">
+          <ListItem button className={toggleValueTrash ? "round-cornerfourClick" : "round-cornerfour"}  onClick={() => handleColorChange('trash')} key="Trash">
             <ListItemIcon>
               {" "}
               <DeleteOutlinedIcon />
@@ -256,9 +288,14 @@ export default function Dashboard(props) {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <TitleCard />
-        <DisplayNotes/>
+        <Switch>
+        <Route path="/dashboard/notes"><Note isToggleView={toggleListView}/></Route>
+        <Route path="/dashboard/archive"><ArchiveNotes isToggleView={toggleListView}/></Route>
+        <Route path="/dashboard/trash" ><TrashNote isToggleView={toggleListView}/></Route>
+        </Switch>
+        {/* getAllNotes = {getAllNotes} */}
       </main>
     </div>
   );
 }
+ 
