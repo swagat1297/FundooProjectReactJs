@@ -11,6 +11,7 @@ export default class TrashNotes extends React.Component {
       anchorEl: null,
       update: false,
       updateNote: {},
+      showIconsTrash: true,
     };
   }
   
@@ -31,7 +32,7 @@ export default class TrashNotes extends React.Component {
   componentDidMount() {
     this. getTrashNotes();
   }
-  getTrashNotes() {
+  getTrashNotes = () =>{
     NoteService. getTrashNote()
       .then((res) => {
         console.log(res, "Trash is calling .filter((ele) => ele.isArchived);");
@@ -50,7 +51,7 @@ export default class TrashNotes extends React.Component {
   render() {
     return (
         <>
-     <DisplayNotes note= {this.state.allNotes} callGetAllNotesArchive ={this.getTrashNotes} isToggleView={this.props.isToggleView} />
+     <DisplayNotes note= {this.state.allNotes} callGetAllNotes ={this.getTrashNotes} isToggleView={this.props.isToggleView} showIconsTrash={this.state.showIconsTrash}/>
      </>
     );
   }
