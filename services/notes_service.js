@@ -46,5 +46,42 @@ class NoteService{
         }
         return axios.post(url, value, true, token);
     }
+    getArchiveNote(){
+        let url = config.url + 'notes/getArchiveNotesList'
+        let token = {
+            headers: {
+                'Authorization': localStorage.getItem("token")
+            }
+        }
+        return axios.get(url, token);
+    }
+    archiveNotes(value){
+        let url = config.url + 'notes/archiveNotes'
+        let token = {
+            headers: {
+                'Authorization': localStorage.getItem("token")
+            }
+        }
+        return axios.post(url, value, true, token);
+    }
+    getTrashNote(){
+        let url = config.url + 'notes/getTrashNotesList'
+        let token = {
+            headers: {
+                'Authorization': localStorage.getItem("token")
+            }
+        }
+        return axios.get(url, token);
+    }
+    deleteForever(value){
+        let url = config.url + 'notes/deleteForeverNotes'
+        let token = {
+            headers: {
+                'Authorization': localStorage.getItem("token")
+            }
+        }
+        return axios.post(url, value, true, token);
+    }
+    
 }
 module.exports = new NoteService();
