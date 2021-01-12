@@ -7,7 +7,11 @@
     border-radius: 0px 33px 33px 0px !important;
   }
 }
+
 .round-corner {
+  border-radius: 0px 33px 33px 0px !important;
+}
+.round-cornerClick {
   background-color: #feefc3 !important;
   border-radius: 0px 33px 33px 0px !important;
 }
@@ -20,7 +24,15 @@
 .round-cornerthree {
   border-radius: 0px 33px 33px 0px !important;
 }
+.round-cornerthreeClick {
+  background-color: #feefc3 !important;
+  border-radius: 0px 33px 33px 0px !important;
+}
 .round-cornerfour {
+  border-radius: 0px 33px 33px 0px !important;
+}
+.round-cornerfourClick {
+  background-color: #feefc3 !important;
   border-radius: 0px 33px 33px 0px !important;
 }
 .makeStyles-root-18 {
@@ -66,4 +78,15 @@
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+}
+@media (max-width: 600px){
+  .search-bar{
+    display: none;
+  }
+  .list-view{
+    display: none;
+  }
+  .profile{
+    margin-left: 39%;
+  }
 }
