@@ -91,7 +91,7 @@ export default class DisplayIcons extends React.Component {
     this.handleClose();
 
     let obj = {
-      isDeleted: value.archive,
+      isDeleted: true,
       noteIdList: [this.props.note.id],
     };
     NoteService.trashNotes(obj)
@@ -223,7 +223,7 @@ export default class DisplayIcons extends React.Component {
                 open={Boolean(this.state.anchorEl)}
                 onClose={this.handleClose}
               >
-                <MenuItem onClick={(this.handleClose, this.deleteNote)}>
+                <MenuItem onClick={(this.handleClose, this.restoreDeleteNote)}>
                   delete
                 </MenuItem>
               </Menu>
